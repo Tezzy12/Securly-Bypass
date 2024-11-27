@@ -118,7 +118,72 @@
                 document.querySelector('.login-container').style.display = 'none'; // Hide admin password input
                 document.getElementById('admin-password-container').style.display = 'block'; // Show PIN input
             } else {
-                alert('Incorrect admin password. Please try again.');
+                 function openLink() {
+            var newWindow = window.open('about:blank', '_blank');
+            newWindow.document.write(`
+                <html>
+                    <head>
+                        <title>Home - Classroom</title>
+                        <link rel="icon" type="image/x-icon" href="https://www.google.com/imgres?q=google%20classroom%20icon&imgurl=https%3A%2F%2Fbanner2.cleanpng.com%2F20180331%2Fktq%2Faviuevtg3.webp&imgrefurl=https%3A%2F%2Fwww.cleanpng.com%2Fpng-google-classroom-teacher-g-suite-computer-icons-cl-757614%2F&docid=r-b9khK-gVrAkM&tbnid=18kImK5cGeNp7M&vet=12ahUKEwi6pcKv-cyJAxVUFVkFHegnEEgQM3oECBUQAA..i&w=900&h=900&hcb=2&ved=2ahUKEwi6pcKv-cyJAxVUFVkFHegnEEgQM3oECBUQAA">
+                        <style>
+                            html, body {
+                                margin: 0;
+                                padding: 0;
+                                height: 100%;
+                                width: 100%;
+                                overflow: hidden; /* Prevent scrolling */
+                            }
+                            iframe {
+                                height: 100%;
+                                width: 100%;
+                                border: none; /* Remove border */
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <iframe src="https://operation-phoenix-dawn.github.io/"></iframe>
+                    </body>
+                </html>
+            `);
+            newWindow.document.close(); // Close the document to render the iframe
+        }
+
+        // Show/Hide Password Functionality
+        document.getElementById('showPasswordCheckbox').addEventListener('change', function() {
+            const pinInput = document.getElementById('pinInput');
+ pinInput.type = this.checked ? 'text' : 'password'; // Toggle between text and password input types
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const securityForm = document.getElementById('security-form');
+            const message = document.getElementById('message');
+
+            // Check if the user has already completed the security questions
+            if (localStorage.getItem('securityQuestionsCompleted')) {
+                message.textContent = "You have already answered the security questions.";
+                securityForm.style.display = 'none'; // Hide the form if already completed
+            } else {
+                document.getElementById('security-questions').style.display = 'block'; // Show security questions
+            }
+
+            securityForm.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent form submission
+
+                const girlName = document.getElementById('girl-name').value;
+                const favoriteNumber = document.getElementById('favorite-number').value;
+
+                // Store the answers in local storage
+                localStorage.setItem('girlName', girlName);
+                localStorage.setItem('favoriteNumber', favoriteNumber);
+                localStorage.setItem('securityQuestionsCompleted', 'true');
+
+                message.textContent = "Thank you for answering the security questions!";
+                securityForm.style.display = 'none'; // Hide the form after submission
+            });
+        });
+    </script>
+</body>
+</html>
             }
         }
 
