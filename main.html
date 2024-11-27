@@ -106,19 +106,9 @@
     </div>
 
     <script>
-        const BASE_PIN = 1; // Starting PIN number
+        const BASE_PIN = 1234; // Starting PIN number
 
-        function getCurrentPin() {
-            const today = new Date();
-            const lastUpdate = localStorage.getItem('lastUpdate');
-            const currentPin = localStorage.getItem('currentPin');
-
-            if (!lastUpdate || new Date(lastUpdate).toDateString() !== today.toDateString()) {
-                const newPin = 9999
-                return newPin.toString().padStart(4, '0'); // Ensure it's 4 digits
-            }
-            return currentPin.padStart(4, '0'); // Return the current PIN
-        }
+       
 
         function checkAdminPassword() {
             const adminPassword = document.getElementById('adminPasswordInput').value;
