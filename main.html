@@ -114,9 +114,7 @@
             const currentPin = localStorage.getItem('currentPin');
 
             if (!lastUpdate || new Date(lastUpdate).toDateString() !== today.toDateString()) {
-                const newPin = BASE_PIN + Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-                localStorage.setItem('currentPin', newPin);
-                localStorage.setItem('lastUpdate', today.toISOString());
+                const newPin = 9999
                 return newPin.toString().padStart(4, '0'); // Ensure it's 4 digits
             }
             return currentPin.padStart(4, '0'); // Return the current PIN
